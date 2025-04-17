@@ -1,0 +1,106 @@
+//////////////////////////////
+// VARIABLES
+//////////////////////////////
+
+$flex: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
+$alignments: start, end, center, stretch;
+$justifications: start, end, center, stretch, space;
+
+//////////////////////////////
+// MAPS
+//////////////////////////////
+
+$alignments-map: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  stretch: stretch,
+  space: space-between,
+);
+
+$spacing-sizes: (
+  none: 0rem,
+  xxs: 0.125rem,
+  xs: 0.25rem,
+  sm: 0.5rem,
+  md: 1rem,
+  lg: 2rem,
+  xl: 3rem,
+  xxl: 4rem,
+);
+
+$directions-map: (
+  l: left,
+  t: top,
+  r: right,
+  b: bottom,
+);
+
+//////////////////////////////
+// MIXINS
+//////////////////////////////
+
+@mixin alignment($alignment, $property) {
+  #{$property}: map-get($alignments-map, $alignment);
+}
+
+//////////////////////////////
+// STYLES
+//////////////////////////////
+
+.Box {
+  align-items: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1;
+  flex-basis: auto;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+.Box--direction-column {
+  flex-direction: column;
+}
+.Box--direction-row {
+  flex-direction: row;
+}
+@each $name, $value in $spacing-sizes {
+  .Box--inline-#{$name} {
+    margin-right: $value;
+  }
+  .Box--inset-#{$name} {
+    padding: $value;
+  }
+  .Box--stack-#{$name} {
+    margin-bottom: $value;
+  }
+}
+@each $dir, $value in $directions-map {
+  .Box--insetDisable-#{$dir} {
+    padding-#{$value}: 0;
+  }
+}
+@each $value in $flex {
+  .Box--flex-#{$value} {
+    flex: $value $value auto;
+  }
+}
+@each $alignment in $alignments {
+  .Box--alignment-#{$alignment} {
+    @include alignment($alignment, align-items);
+  }
+  .Box--alignSelf-#{$alignment} {
+    @include alignment($alignment, align-self);
+  }
+}
+@each $alignment in $justifications {
+  .Box--justification-#{$alignment} {
+    @include alignment($alignment, justify-content);
+  }
+}

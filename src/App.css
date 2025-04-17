@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.BoxExample {
+  background-color: #ececec;
+  padding: 3rem;
+  font-family: "Helvetica Neue";
+  text-align: left;
+
+  .Box {
+    background-color: #0b636377;
+    color: white;
+  }
+
+  .RedBox {
+    background-color: red;
+    color: white;
+  }
+
+  .width--md {
+    max-width: 37.5rem;
+  }
+
+  .code-side {
+    max-width: 40%;
+    background-color: white;
+    color: #222;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 0.875rem;
+    max-height: 20rem;
+    overflow: auto;
+    text-align: left;
+  }
+
+  .unbox {
+    background-color: transparent;
+    color: black;
+  }
+
+  .link {
+    display: inline-flex;
+  }
+}
